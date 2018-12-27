@@ -1,4 +1,5 @@
 import pygame
+from plane_sprites import *
 
 pygame.init()
 
@@ -21,6 +22,9 @@ hero = pygame.image.load("./images/me1.png")
 # 刷新游戏窗口
 # pygame.display.update()
 
+# 创建精灵和精灵组
+enemy = GameSprite("./images/enemy1.png")
+sprite_group = pygame.sprite.Group(enemy)
 
 # 游戏时钟对象
 clock = pygame.time.Clock()
@@ -42,6 +46,10 @@ while True:
         
     screen.blit(bg, (0, 0))
     screen.blit(hero, hero_rect)
+    # 精灵组绘制和移动
+    sprite_group.draw(screen)
+    sprite_group.update()
+
     pygame.display.update()
     pass
 
