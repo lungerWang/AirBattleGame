@@ -2,6 +2,7 @@ import pygame
 
 SCREEN_RECT = pygame.Rect(0, 0, 480, 700)
 FRAME = 60
+CREATE_ENEMY_EVENT = pygame.USEREVENT
 
 
 class GameSprite(pygame.sprite.Sprite):

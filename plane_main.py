@@ -6,9 +6,15 @@ class PlaneGame(object):
 
     def __init__(self):
         print("游戏初始化")
+        # 创建游戏窗口
         self.screen = pygame.display.set_mode(SCREEN_RECT.size)
+        # 创建游戏时钟
         self.clock = pygame.time.Clock()
+        # 创建精灵
         self.__create_sprites()
+        # 设置定时器事件-创建敌机
+        pygame.time.set_timer(CREATE_ENEMY_EVENT, 1000)
+
 
     def start_game(self):
         print("开始游戏")
@@ -37,6 +43,8 @@ class PlaneGame(object):
             # 判断是否点击退出
             if event.type == pygame.QUIT:
                 self.__game_over()
+            elif event.type == CREATE_ENEMY_EVENT:
+                print("敌人出现。。。")
 
     def collide_detect(self):
         pass
