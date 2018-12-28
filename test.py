@@ -46,9 +46,9 @@ while True:
         
     screen.blit(bg, (0, 0))
     screen.blit(hero, hero_rect)
-    # 精灵组绘制和移动
-    sprite_group.draw(screen)
+    # 精灵组移动和绘制
     sprite_group.update()
+    sprite_group.draw(screen)
 
     pygame.display.update()
     pass

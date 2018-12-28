@@ -1,5 +1,8 @@
 import pygame
 
+SCREEN_RECT = pygame.Rect(0, 0, 480, 700)
+FRAME = 60
+
 
 class GameSprite(pygame.sprite.Sprite):
     """游戏精灵"""
