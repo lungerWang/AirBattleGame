@@ -27,14 +27,13 @@ class GameSprite(pygame.sprite.Sprite):
 
 
 class BackGround(GameSprite):
-
+    """背景精灵"""
     def __init__(self, is_alt=False):
         super().__init__("./images/background.png")
         if is_alt:
             self.rect.y = -self.rect.height
 
     def update(self):
-        """背景精灵"""
         # 如果完全离开屏幕，刷新位置到屏幕顶部
         if self.rect.y >= SCREEN_RECT.height:
             self.rect.y = -self.rect.height
@@ -43,7 +42,7 @@ class BackGround(GameSprite):
 
 
 class Enemy(GameSprite):
-
+    """敌人精灵"""
     def __init__(self):
         super().__init__("./images/enemy1.png")
         self.speed = random.randint(2, 3)
