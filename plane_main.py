@@ -26,6 +26,10 @@ class PlaneGame(object):
             pass
 
     def __create_sprites(self):
+        bg1 = BackGround()
+        bg2 = BackGround(True)
+        bg2.rect.y = -bg2.rect.height
+        self.bg_group = pygame.sprite.Group(bg1, bg2)
         pass
 
     def handle_event(self):
@@ -34,13 +38,12 @@ class PlaneGame(object):
             if event.type == pygame.QUIT:
                 self.__game_over()
 
-        pass
-
     def collide_detect(self):
         pass
 
     def update_sprites(self):
-        pass
+        self.bg_group.update()
+        self.bg_group.draw(self.screen)
 
     @staticmethod
     def __game_over():

@@ -21,3 +21,19 @@ class GameSprite(pygame.sprite.Sprite):
     def update(self):
         # 飞行轨迹
         self.rect.y += self.speed
+
+
+class BackGround(GameSprite):
+
+    def __init__(self, is_alt=False):
+        super().__init__("./images/background.png")
+        if is_alt:
+            self.rect.y = -self.rect.height
+
+    def update(self):
+        """背景精灵"""
+        # 如果完全离开屏幕，刷新位置到屏幕顶部
+        if self.rect.y >= SCREEN_RECT.height:
+            self.rect.y = -self.rect.height
+        else:
+            self.rect.y += self.speed
