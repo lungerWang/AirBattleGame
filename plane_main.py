@@ -34,10 +34,13 @@ class PlaneGame(object):
         bg1 = BackGround()
         bg2 = BackGround(True)
         bg2.rect.y = -bg2.rect.height
+        self.hero = Hero()
         # 背景精灵组
         self.bg_group = pygame.sprite.Group(bg1, bg2)
         # 敌人飞机精灵组
         self.enemy_group = pygame.sprite.Group()
+        # 英雄精灵组
+        self.hero_group = pygame.sprite.Group(self.hero)
         pass
 
     def handle_event(self):
@@ -59,6 +62,9 @@ class PlaneGame(object):
 
         self.enemy_group.update()
         self.enemy_group.draw(self.screen)
+
+        self.hero_group.update()
+        self.hero_group.draw(self.screen)
 
     @staticmethod
     def __game_over():

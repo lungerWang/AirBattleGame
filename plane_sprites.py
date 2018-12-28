@@ -58,3 +58,11 @@ class Enemy(GameSprite):
 
     def __del__(self):
         print("敌机挂了。。%s" % self.rect)
+
+
+class Hero(GameSprite):
+    """"英雄精灵"""
+    def __init__(self):
+        super().__init__("./images/me1.png", 0)
+        self.rect.centerx = SCREEN_RECT.centerx
+        self.rect.bottom = SCREEN_RECT.bottom - 100
