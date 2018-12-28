@@ -15,7 +15,6 @@ class PlaneGame(object):
         # 设置定时器事件-创建敌机
         pygame.time.set_timer(CREATE_ENEMY_EVENT, 1000)
 
-
     def start_game(self):
         print("开始游戏")
         while True:
@@ -35,7 +34,10 @@ class PlaneGame(object):
         bg1 = BackGround()
         bg2 = BackGround(True)
         bg2.rect.y = -bg2.rect.height
+        # 背景精灵组
         self.bg_group = pygame.sprite.Group(bg1, bg2)
+        # 敌人飞机精灵组
+        self.enemy_group = pygame.sprite.Group()
         pass
 
     def handle_event(self):
@@ -45,6 +47,8 @@ class PlaneGame(object):
                 self.__game_over()
             elif event.type == CREATE_ENEMY_EVENT:
                 print("敌人出现。。。")
+                enemy = Enemy()
+                self.enemy_group.add(enemy)
 
     def collide_detect(self):
         pass
@@ -52,6 +56,9 @@ class PlaneGame(object):
     def update_sprites(self):
         self.bg_group.update()
         self.bg_group.draw(self.screen)
+
+        self.enemy_group.update()
+        self.enemy_group.draw(self.screen)
 
     @staticmethod
     def __game_over():
