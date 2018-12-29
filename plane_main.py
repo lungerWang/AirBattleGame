@@ -41,7 +41,6 @@ class PlaneGame(object):
         self.enemy_group = pygame.sprite.Group()
         # 英雄精灵组
         self.hero_group = pygame.sprite.Group(self.hero)
-        pass
 
     def handle_event(self):
         for event in pygame.event.get():
@@ -61,6 +60,10 @@ class PlaneGame(object):
         else:
             self.hero.speed = 0
 
+        if keys_press[pygame.K_KP_ENTER]:
+            self.hero.fire()
+
+
     def collide_detect(self):
         pass
 
@@ -73,6 +76,9 @@ class PlaneGame(object):
 
         self.hero_group.update()
         self.hero_group.draw(self.screen)
+
+        self.hero.bullet_group.update()
+        self.hero.bullet_group.draw(self.screen)
 
     @staticmethod
     def __game_over():

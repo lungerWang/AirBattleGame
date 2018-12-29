@@ -1,6 +1,6 @@
 import random
+import time
 import pygame
-
 
 SCREEN_RECT = pygame.Rect(0, 0, 480, 700)
 FRAME = 60
@@ -65,7 +65,39 @@ class Hero(GameSprite):
     def __init__(self):
         super().__init__("./images/me1.png", 0)
         self.rect.centerx = SCREEN_RECT.centerx
-        self.rect.bottom = SCREEN_RECT.bottom - 100
+        self.rect.bottom = SCREEN_RECT.bottom - 80
+        # 子弹精灵组
+        self.bullet_group = pygame.sprite.Group()
+        self.last_bullet_time = 0
 
     def update(self):
         self.rect.x += self.speed
+        if self.rect.x <= 0:
+            self.rect.x = 0
+        elif self.rect.right >= SCREEN_RECT.right:
+            self.rect.right = SCREEN_RECT.right
+
+    def fire(self):
+        # 控制子弹发射最低间隙
+        if (time.time() - self.last_bullet_time) < 0.3:
+            return
+        self.last_bullet_time = time.time()
+        bullet = Bullet(self.rect.centerx, self.rect.top + 5)
+        self.bullet_group.add(bullet)
+
+
+
+class Bullet(GameSprite):
+
+    def __init__(self, centerx, y):
+        super().__init__("./images/bullet1.png", speed=2)
+        self.rect.centerx = centerx
+        self.rect.y = y
+
+    def update(self):
+        self.rect.y -= self.speed
+        if self.rect.y < - self.rect.height:
+            self.kill()
+
+    def __del__(self):
+        print("子弹回收。。%s" % self.rect)
