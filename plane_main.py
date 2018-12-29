@@ -53,6 +53,14 @@ class PlaneGame(object):
                 enemy = Enemy()
                 self.enemy_group.add(enemy)
 
+        keys_press = pygame.key.get_pressed()
+        if keys_press[pygame.K_RIGHT]:
+            self.hero.speed = 2
+        elif keys_press[pygame.K_LEFT]:
+            self.hero.speed = -2
+        else:
+            self.hero.speed = 0
+
     def collide_detect(self):
         pass
 
