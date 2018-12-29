@@ -63,9 +63,13 @@ class PlaneGame(object):
         if keys_press[pygame.K_KP_ENTER]:
             self.hero.fire()
 
-
     def collide_detect(self):
-        pass
+        # 子弹及敌机碰撞
+        pygame.sprite.groupcollide(self.enemy_group, self.hero.bullet_group, True, True)
+        collide_list = pygame.sprite.spritecollide(self.hero, self.enemy_group, True)
+        if len(collide_list) > 0:
+            print("游戏结束")
+            self.__game_over()
 
     def update_sprites(self):
         self.bg_group.update()
